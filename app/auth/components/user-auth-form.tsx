@@ -1,7 +1,11 @@
 "use client"
 
 import * as React from "react"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 
+import type { Database } from "@/types/supabase"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -12,6 +16,33 @@ interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const router = useRouter()
+  const supabase = createClientComponentClient<Database>()
+
+  const handleSignUp = async () => {
+    setIsLoading(true)
+    await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: `${location.origin}/auth/callback`,
+      },
+    })
+    setIsLoading(false)
+    router.refresh()
+  }
+
+  const handleSignIn = async () => {
+    setIsLoading(true)
+    await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+    setIsLoading(false)
+    router.refresh()
+  }
 
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault()
@@ -31,6 +62,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               Email
             </Label>
             <Input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               id="email"
               placeholder="name@example.com"
               type="email"
@@ -45,6 +78,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               Password
             </Label>
             <Input
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
               id="password"
               placeholder="password"
               type="password"
@@ -54,7 +89,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               disabled={isLoading}
             />
           </div>
-          <Button disabled={isLoading}>
+          <Button onClick={handleSignIn} disabled={isLoading}>
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
