@@ -1,7 +1,6 @@
 import {
   Eye,
   FacebookIcon,
-  InstagramIcon,
   Loader2,
   LucideProps,
   Menu,
@@ -20,7 +19,6 @@ export const Icons = {
   spinner: Loader2,
   navMenu: Menu,
   facebook: FacebookIcon,
-  instagram: InstagramIcon,
   eye: Eye,
   logo: (props: LucideProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>

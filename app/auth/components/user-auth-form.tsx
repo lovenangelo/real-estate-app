@@ -88,14 +88,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         )}{" "}
         Facebook
       </Button>
-      <Button variant="outline" type="button" disabled={isLoading}>
-        {isLoading ? (
-          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
-          <Icons.instagram className="mr-2 h-4 w-4" />
-        )}{" "}
-        Instagram
-      </Button>
     </div>
   )
 }
