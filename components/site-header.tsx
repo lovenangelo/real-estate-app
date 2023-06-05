@@ -1,9 +1,7 @@
 import Link from "next/link"
-import { Menu } from "lucide-react"
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -17,7 +15,9 @@ export function SiteHeader() {
       <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
         <Link href="/" className="flex items-center space-x-2">
           <Icons.logo className="h-6 w-6" />
-          <span className="inline-block font-bold">{siteConfig.name}</span>
+          <span className="font-bold md:inline-block hidden">
+            {siteConfig.name}
+          </span>
         </Link>
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-1">
