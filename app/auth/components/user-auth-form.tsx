@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useToast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
@@ -20,6 +21,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [password, setPassword] = useState("")
   const router = useRouter()
   const supabase = createClientComponentClient<Database>()
+  const { toast } = useToast()
 
   const handleSignUp = async () => {
     setIsLoading(true)
@@ -36,10 +38,20 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
   const handleSignIn = async () => {
     setIsLoading(true)
-    await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
+    await supabase.auth
+      .signInWithPassword({
+        email,
+        password,
+      })
+      .then((res) => {
+        console.log(res)
+        if (res.error) {
+          toast({
+            title: "Uh oh! Something went wrong.",
+            description: res.error.message,
+          })
+        }
+      })
     setIsLoading(false)
     router.refresh()
   }
