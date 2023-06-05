@@ -17,17 +17,24 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 
 const formSchema = z.object({
+  firstName: z
+    .string()
+    .min(2, { message: "Too short" })
+    .max(20, { message: "Too long" }),
+  lastName: z
+    .string()
+    .min(2, { message: "Too short" })
+    .max(20, { message: "Too long" }),
   email: z.string().email(),
   password: z
     .string()
     .min(6, { message: "Password must be at least 6 characters" }),
 })
 
-export function LoginForm({
+export function SignUpForm({
   isLoading,
   setIsLoading,
 }: {
@@ -40,37 +47,76 @@ export function LoginForm({
     defaultValues: {
       email: "",
       password: "",
+      firstName: "",
+      lastName: "",
     },
   })
 
-  const handleSignIn = async (email: string, password: string) => {
+  const handleSignUp = async (email: string, password: string) => {
     setIsLoading(true)
-    await supabase.auth
-      .signInWithPassword({
-        email,
-        password,
-      })
-      .then((res) => {
-        console.log(res)
-        if (res.error) {
-          toast({
-            title: "Uh oh! Something went wrong.",
-            description: res.error.message,
-          })
-        }
-      })
+    await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: `${location.origin}/auth/callback`,
+      },
+    })
     setIsLoading(false)
     router.refresh()
   }
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
-    handleSignIn(values.email, values.password)
+    handleSignUp(values.email, values.password)
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <div className="grid grid-cols-2 gap-4">
+          <FormField
+            control={form.control}
+            name="firstName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>First name</FormLabel>
+                <FormControl>
+                  <Input
+                    id="firstName"
+                    placeholder="John"
+                    type="text"
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    disabled={isLoading}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="lastName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Last name</FormLabel>
+                <FormControl>
+                  <Input
+                    id="last name"
+                    placeholder="Doe"
+                    type="text"
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    disabled={isLoading}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <FormField
           control={form.control}
           name="email"
@@ -115,12 +161,13 @@ export function LoginForm({
             </FormItem>
           )}
         />
+
         <div className="flex items-center justify-center">
           <Button type="submit" disabled={isLoading}>
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Sign In with Email
+            Create account
           </Button>
         </div>
       </form>
