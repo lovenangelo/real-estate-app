@@ -1,5 +1,3 @@
-import { Menu } from "lucide-react"
-
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import {
@@ -9,6 +7,8 @@ import {
   MenubarMenu,
   MenubarTrigger,
 } from "@/components/ui/menubar"
+
+import { Icons } from "./icons"
 
 export function NavMenuBar() {
   const list = siteConfig.mainNav
@@ -31,7 +31,7 @@ export function NavMenuBar() {
     <Menubar>
       <MenubarMenu>
         <MenubarTrigger className={cn("cursor-pointer")}>
-          <Menu />
+          <Icons.navMenu />
         </MenubarTrigger>
         <MenubarContent>{items}</MenubarContent>
       </MenubarMenu>
