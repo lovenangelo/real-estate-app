@@ -1,8 +1,15 @@
+"use client"
+
+import { useState } from "react"
 import Link from "next/link"
+
+import { Button } from "@/components/ui/button"
 
 import { UserAuthForm } from "./components/user-auth-form"
 
 export default function AuthPage() {
+  const [authType, setAuthType] = useState<string>("LOGIN")
+
   return (
     <div className="items-center h-[calc(100vh-65px)] justify-center p-16">
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
@@ -14,7 +21,7 @@ export default function AuthPage() {
             Enter your email below to create your account
           </p>
         </div>
-        <UserAuthForm authType="LOGIN" />
+        <UserAuthForm authType={authType} />
         <p className="px-8 text-center text-sm text-muted-foreground">
           By clicking continue, you agree to our{" "}
           <Link
@@ -32,6 +39,36 @@ export default function AuthPage() {
           </Link>
           .
         </p>
+        <div className=" space-x-1 flex justify-center items-center">
+          {authType == "LOGIN" && (
+            <>
+              <p className="text-sm ">Don't have an account? </p>
+              <Button
+                onClick={() => {
+                  setAuthType("SIGNUP")
+                }}
+                variant={"link"}
+                size={"noPadding"}
+              >
+                Sign up
+              </Button>
+            </>
+          )}
+          {authType == "SIGNUP" && (
+            <>
+              <p className="text-sm ">Already have an account? </p>
+              <Button
+                onClick={() => {
+                  setAuthType("LOGIN")
+                }}
+                variant={"link"}
+                size={"noPadding"}
+              >
+                Sign in
+              </Button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   )
