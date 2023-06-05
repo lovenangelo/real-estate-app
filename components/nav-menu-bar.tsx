@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import {
@@ -15,15 +17,17 @@ export function NavMenuBar() {
   const items = list.slice(1, list.length - 1)?.map(
     (item, index) =>
       item.href && (
-        <MenubarItem
-          key={index}
-          className={cn(
-            "flex items-center text-sm font-medium text-muted-foreground",
-            item.disabled && "cursor-not-allowed opacity-80"
-          )}
-        >
-          {item.title}
-        </MenubarItem>
+        <Link href={item.href}>
+          <MenubarItem
+            key={index}
+            className={cn(
+              "flex items-center text-sm font-medium text-muted-foreground",
+              item.disabled && "cursor-not-allowed opacity-80"
+            )}
+          >
+            {item.title}
+          </MenubarItem>
+        </Link>
       )
   )
 

@@ -4,7 +4,7 @@ import { UserAuthForm } from "./components/user-auth-form"
 
 export default function AuthPage() {
   return (
-    <div className="lg:p-8 items-center justify-center p-16">
+    <div className="items-center h-[calc(100vh-65px)] justify-center p-16">
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight">
