@@ -26,6 +26,13 @@ export const siteConfig = {
       disabled: false,
     },
   ],
+  authNav: [
+    {
+      title: "Sign out",
+      href: null,
+      disabled: false,
+    },
+  ],
   links: {
     twitter: "https://twitter.com/shadcn",
     github: "https://github.com/shadcn/ui",

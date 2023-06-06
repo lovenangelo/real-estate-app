@@ -1,10 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 
 import { siteConfig } from "@/config/site"
-import { cn, supabase } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import {
   Menubar,
   MenubarContent,
@@ -14,12 +13,8 @@ import {
 } from "@/components/ui/menubar"
 
 import { Icons } from "./icons"
-import SignOutButton from "./sign-out-button"
-import { useUser } from "./user-provider"
 
 export function NavMenuBar() {
-  const { isLoading, user } = useUser()
-
   const list = siteConfig.mainNav
   const items = list.slice(1, list.length - 1)?.map(
     (item, index) =>
@@ -36,19 +31,6 @@ export function NavMenuBar() {
         </Link>
       )
   )
-
-  if (user) {
-    items.push(
-      <MenubarItem
-        className={cn(
-          "flex items-center text-sm font-medium text-muted-foreground",
-          isLoading && "cursor-not-allowed opacity-80"
-        )}
-      >
-        <SignOutButton isLoading={isLoading} />
-      </MenubarItem>
-    )
-  }
 
   return (
     <Menubar>

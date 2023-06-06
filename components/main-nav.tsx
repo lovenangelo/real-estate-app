@@ -6,17 +6,12 @@ import Link from "next/link"
 import { NavItem } from "@/types/nav"
 import { cn } from "@/lib/utils"
 
-import SignOutButton from "./sign-out-button"
-import { useUser } from "./user-provider"
-
 interface MainNavProps {
   items?: NavItem[]
 }
 
 export function MainNav({ items }: MainNavProps) {
-  const { user, isLoading } = useUser()
-
-  const links = items!.slice(1, user ? items!.length - 1 : undefined)?.map(
+  const links = items!.slice(1)?.map(
     (item, index) =>
       item.href && (
         <Link
@@ -32,13 +27,9 @@ export function MainNav({ items }: MainNavProps) {
       )
   )
 
-  if (user) {
-    links.push(<SignOutButton isLoading={isLoading} />)
-  }
-
   return (
     <div className="flex gap-6 md:gap-10">
-      {!isLoading && <nav className="flex gap-6">{links}</nav>}
+      <nav className="flex gap-6">{links}</nav>
     </div>
   )
 }

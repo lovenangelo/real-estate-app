@@ -22,7 +22,7 @@ export default function SignOutButton({ isLoading }: { isLoading: boolean }) {
 
   return (
     <Button
-      variant={"outline"}
+      variant={"ghost"}
       key={"signout"}
       className={cn(isLoading && "cursor-not-allowed opacity-80")}
       onClick={signOutHandler}
