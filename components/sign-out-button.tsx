@@ -24,7 +24,10 @@ export default function SignOutButton({ isLoading }: { isLoading: boolean }) {
     <Button
       variant={"ghost"}
       key={"signout"}
-      className={cn(isLoading && "cursor-not-allowed opacity-80")}
+      className={cn(
+        "justify-start w-full",
+        isLoading && "cursor-not-allowed opacity-80"
+      )}
       onClick={signOutHandler}
     >
       Sign out

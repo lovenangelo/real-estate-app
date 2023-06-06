@@ -20,7 +20,7 @@ import { useUser } from "./user-provider"
 export function AuthenticatedNavMenuBar() {
   const { user, isLoading } = useUser()
 
-  const userInitials = user?.email?.substring(0, 1).toUpperCase()
+  const userInitials = user!.email![0].toUpperCase()
 
   const list = siteConfig.authNav
   const signUpConfig = list[0]
@@ -41,12 +41,14 @@ export function AuthenticatedNavMenuBar() {
   )
 
   return (
-    <Menubar>
+    <Menubar className={cn("rounded-full border-0 p-0")}>
       <MenubarMenu>
-        <MenubarTrigger className={cn("cursor-pointer")}>
+        <MenubarTrigger className={cn("cursor-pointer rounded-full px-0 py-0")}>
           <Avatar>
             <AvatarImage src="/" />
-            <AvatarFallback>{userInitials}</AvatarFallback>
+            <AvatarFallback className={cn("font-semibold border")}>
+              {userInitials}
+            </AvatarFallback>
           </Avatar>
         </MenubarTrigger>
         <MenubarContent>
