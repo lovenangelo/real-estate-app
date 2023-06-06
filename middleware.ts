@@ -20,8 +20,8 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/dashboard", req.url))
   }
 
-  // if user is not signed in and the current path is not / redirect the user to /
-  if (!user && req.nextUrl.pathname !== "/") {
+  // if user is not signed in and the current path is not /dashboard redirect the user to /
+  if (!user && req.nextUrl.pathname == "/dashboard") {
     return NextResponse.redirect(new URL("/", req.url))
   }
 
