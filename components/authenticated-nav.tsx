@@ -3,9 +3,11 @@
 import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
 
 import { AuthenticatedNavMenuBar } from "./authenticated-nav-menu-bar"
 import { Icons } from "./icons"
+import { Button } from "./ui/button"
 
 export default function AuthenticatedNav() {
   return (
@@ -16,7 +18,16 @@ export default function AuthenticatedNav() {
           {siteConfig.name}
         </span>
       </Link>
-      <div className="flex flex-1 items-center justify-end space-x-4">
+      <div className="h-full flex flex-1 items-center justify-end space-x-4">
+        <Button variant={"ghost"} className={cn("p-0 m-0")}>
+          <Icons.chat />
+        </Button>
+        <Button variant={"ghost"} className={cn("p-0 m-0")}>
+          <Icons.notification />
+        </Button>
+        <div className="h-full py-3">
+          <div className="h-full w-[2px] bg-primary" />
+        </div>
         <AuthenticatedNavMenuBar />
       </div>
     </div>
