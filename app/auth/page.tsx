@@ -23,7 +23,7 @@ export default function AuthPage() {
               : "Enter your credentials below to login"}
           </p>
         </div>
-        <UserAuthForm authType={authType} />
+        <UserAuthForm authtype={authType} />
         <p className="px-8 text-center text-sm text-muted-foreground">
           By clicking continue, you agree to our{" "}
           <Link

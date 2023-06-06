@@ -10,7 +10,7 @@ import { LoginForm } from "./login-form"
 import { SignUpForm } from "./signup-form"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
-  authType: string
+  authtype: string
 }
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
@@ -18,10 +18,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
-      {props.authType == "LOGIN" && (
+      {props.authtype == "LOGIN" && (
         <LoginForm isLoading={isLoading} setIsLoading={setIsLoading} />
       )}
-      {props.authType == "SIGNUP" && (
+      {props.authtype == "SIGNUP" && (
         <SignUpForm isLoading={isLoading} setIsLoading={setIsLoading} />
       )}
       <div className="relative">

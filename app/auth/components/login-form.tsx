@@ -45,20 +45,22 @@ export function LoginForm({
 
   const handleSignIn = async (email: string, password: string) => {
     setIsLoading(true)
-    await supabase.auth
-      .signInWithPassword({
-        email,
-        password,
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+
+    if (data) {
+      console.log(data)
+    }
+
+    if (error) {
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: error.message,
       })
-      .then((res) => {
-        console.log(res)
-        if (res.error) {
-          toast({
-            title: "Uh oh! Something went wrong.",
-            description: res.error.message,
-          })
-        }
-      })
+    }
+
     setIsLoading(false)
     router.refresh()
   }

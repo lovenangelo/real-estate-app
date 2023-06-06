@@ -17,6 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 
 const formSchema = z.object({
@@ -52,22 +53,51 @@ export function SignUpForm({
     },
   })
 
-  const handleSignUp = async (email: string, password: string) => {
+  const handleSignUp = async (
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string
+  ) => {
     setIsLoading(true)
-    await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: `${location.origin}/auth/callback`,
+        data: {
+          first_name: firstName,
+          last_name: lastName,
+        },
       },
     })
     setIsLoading(false)
+
+    if (data) {
+      toast({
+        title: "Email confirmation sent!",
+        description: "Please verify your email in order to proceed.",
+      })
+    }
+
+    if (error) {
+      console.log(error)
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: error.message,
+      })
+    }
     router.refresh()
   }
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
-    handleSignUp(values.email, values.password)
+    handleSignUp(
+      values.email,
+      values.password,
+      values.firstName,
+      values.lastName
+    )
   }
 
   return (
