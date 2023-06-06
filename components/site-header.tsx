@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
@@ -7,9 +9,11 @@ import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 import { NavMenuBar } from "./nav-menu-bar"
+import { useUser } from "./user-provider"
 
 export function SiteHeader() {
   const mainNav = siteConfig.mainNav
+  const { user, isLoading } = useUser()
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
@@ -25,17 +29,19 @@ export function SiteHeader() {
               <MainNav items={mainNav} />
             </div>
             <div className="md:hidden">
-              <Link
-                key={0}
-                href={mainNav[mainNav.length - 1].href}
-                className={cn(
-                  "flex items-center text-sm font-medium text-muted-foreground",
-                  mainNav[mainNav.length - 1].disabled &&
-                    "cursor-not-allowed opacity-8mainNav.length-1"
-                )}
-              >
-                {mainNav[mainNav.length - 1].title}
-              </Link>
+              {!isLoading && !user && (
+                <Link
+                  key={0}
+                  href={mainNav[mainNav.length - 1].href}
+                  className={cn(
+                    "flex items-center text-sm font-medium text-muted-foreground",
+                    mainNav[mainNav.length - 1].disabled &&
+                      "cursor-not-allowed opacity-8mainNav.length-1"
+                  )}
+                >
+                  {mainNav[mainNav.length - 1].title}
+                </Link>
+              )}
             </div>
             <ThemeToggle />
             <div className="md:hidden">
