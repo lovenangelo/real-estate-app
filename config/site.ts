@@ -33,6 +33,43 @@ export const siteConfig = {
       disabled: false,
     },
   ],
+  sideBarNav: [
+    {
+      title: "Overview",
+      href: "/overview",
+      disabled: false,
+    },
+    {
+      title: "Property",
+      href: "/property",
+      disabled: false,
+    },
+    {
+      title: "Reports",
+      href: "/reports",
+      disabled: false,
+    },
+    {
+      title: "Notifications",
+      href: "/notifications",
+      disabled: false,
+    },
+    {
+      title: "Message",
+      href: "/message",
+      disabled: false,
+    },
+    {
+      title: "Account",
+      href: "/account",
+      disabled: false,
+    },
+    {
+      title: "Settings",
+      href: "/settings",
+      disabled: false,
+    },
+  ],
   links: {
     twitter: "https://twitter.com/shadcn",
     github: "https://github.com/shadcn/ui",
