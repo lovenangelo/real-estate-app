@@ -25,12 +25,6 @@ export default function AuthenticatedNav() {
       <div className="h-full flex flex-1 items-center justify-end space-x-4">
         <div>
           <ThemeToggle />
-          <Button variant={"ghost"} className={cn("m-0")}>
-            <Icons.chat />
-          </Button>
-          <Button variant={"ghost"} className={cn("m-0")}>
-            <Icons.notification />
-          </Button>
         </div>
 
         <div className="h-full py-4">
