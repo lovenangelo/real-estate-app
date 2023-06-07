@@ -35,11 +35,7 @@ export function SideBarNav() {
             <li className="w-full">
               <Link className="flex space-x-4" href={"/overview"}>
                 <Icons.overview />
-                <p
-                  className={cn(
-                    "font-semibold transition duration-500 hidden md:block"
-                  )}
-                >
+                <p className={cn("transition duration-500 hidden md:block")}>
                   Overview
                 </p>
               </Link>
@@ -47,11 +43,7 @@ export function SideBarNav() {
             <li>
               <Link className="flex space-x-4" href={"/overview"}>
                 <Icons.property />
-                <p
-                  className={cn(
-                    "font-semibold transition duration-500 hidden md:block"
-                  )}
-                >
+                <p className={cn("transition duration-500 hidden md:block")}>
                   Properties
                 </p>
               </Link>
@@ -59,11 +51,7 @@ export function SideBarNav() {
             <li>
               <Link className="flex space-x-4" href={"/overview"}>
                 <Icons.analytics />
-                <p
-                  className={cn(
-                    "font-semibold transition duration-500 hidden md:block"
-                  )}
-                >
+                <p className={cn("transition duration-500 hidden md:block")}>
                   Reports
                 </p>
               </Link>
@@ -71,11 +59,7 @@ export function SideBarNav() {
             <li>
               <Link className="flex space-x-4" href={"/overview"}>
                 <Icons.notification />
-                <p
-                  className={cn(
-                    "font-semibold transition duration-500 hidden md:block"
-                  )}
-                >
+                <p className={cn("transition duration-500 hidden md:block")}>
                   Notifications
                 </p>
               </Link>
@@ -83,11 +67,7 @@ export function SideBarNav() {
             <li>
               <Link className="flex space-x-4" href={"/overview"}>
                 <Icons.chat />
-                <p
-                  className={cn(
-                    "font-semibold transition duration-500 hidden md:block"
-                  )}
-                >
+                <p className={cn("transition duration-500 hidden md:block")}>
                   Messages
                 </p>
               </Link>
@@ -95,11 +75,7 @@ export function SideBarNav() {
             <li>
               <Link className="flex space-x-4" href={"/overview"}>
                 <Icons.account />
-                <p
-                  className={cn(
-                    "font-semibold transition duration-500 hidden md:block"
-                  )}
-                >
+                <p className={cn("transition duration-500 hidden md:block")}>
                   Account
                 </p>
               </Link>
@@ -107,11 +83,7 @@ export function SideBarNav() {
             <li>
               <Link className="flex space-x-4" href={"/overview"}>
                 <Icons.settings />
-                <p
-                  className={cn(
-                    "font-semibold transition duration-500 hidden md:block"
-                  )}
-                >
+                <p className={cn("transition duration-500 hidden md:block")}>
                   Settings
                 </p>
               </Link>

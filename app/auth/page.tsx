@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
-import OverviewLoader from "@/components/loaders/overview-loader"
+import AuthLoader from "@/components/loaders/auth-loader"
 import { useUser } from "@/components/user-provider"
 
 import { UserAuthForm } from "./components/user-auth-form"
@@ -14,7 +14,7 @@ export default function AuthPage() {
   const { user } = useUser()
 
   if (user) {
-    return <OverviewLoader />
+    return <AuthLoader />
   }
 
   return (

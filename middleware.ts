@@ -17,11 +17,11 @@ export async function middleware(req: NextRequest) {
     user &&
     (req.nextUrl.pathname === "/" || req.nextUrl.pathname === "/auth")
   ) {
-    return NextResponse.redirect(new URL("/dashboard", req.url))
+    return NextResponse.redirect(new URL("/overview", req.url))
   }
 
-  // if user is not signed in and the current path is not /dashboard redirect the user to /
-  if (!user && req.nextUrl.pathname == "/dashboard") {
+  // if user is not signed in and the current path is not /overview redirect the user to /
+  if (!user && req.nextUrl.pathname == "/overview") {
     return NextResponse.redirect(new URL("/", req.url))
   }
 
@@ -29,5 +29,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/dashboard", "/auth"],
+  matcher: ["/", "/overview", "/auth"],
 }
