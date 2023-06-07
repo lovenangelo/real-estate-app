@@ -4,9 +4,9 @@ import OverviewLoader from "@/components/loaders/overview-loader"
 import { useUser } from "@/components/user-provider"
 
 export default function DashboardPage() {
-  const { isLoading } = useUser()
+  const { isLoading, user } = useUser()
 
-  if (isLoading) {
+  if (isLoading || !user) {
     return <OverviewLoader />
   }
 
