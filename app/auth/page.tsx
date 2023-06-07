@@ -4,11 +4,18 @@ import { useState } from "react"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
+import OverviewLoader from "@/components/loaders/overview-loader"
+import { useUser } from "@/components/user-provider"
 
 import { UserAuthForm } from "./components/user-auth-form"
 
 export default function AuthPage() {
   const [authType, setAuthType] = useState<string>("LOGIN")
+  const { user } = useUser()
+
+  if (user) {
+    return <OverviewLoader />
+  }
 
   return (
     <div className="items-center h-[calc(100vh-65px)] justify-center p-16">
